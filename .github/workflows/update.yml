@@ -1,6 +1,6 @@
 name: Update project structure
 on: 
-  pusth:
+  push:
     branch: master
       - master
 
