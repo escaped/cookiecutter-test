@@ -1,7 +1,7 @@
 name: Update project structure
 on: 
   push:
-    branch: master
+    branches: master
       - master
 
 jobs:
@@ -35,7 +35,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: "chore: update project structure to $TEMPLATE_COMMIT"
+          commit-message: update project structure to ${{ env.TEMPLATE_COMMIT }}
           title: "[Cookiecutter] Auto-Update project structure"
           body: ""
           branch: chore/cookiecutter-pypackage
