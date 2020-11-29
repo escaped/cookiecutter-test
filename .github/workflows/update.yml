@@ -10,22 +10,22 @@ jobs:
         with:
           python-version: 3.8.5
 
+      - name: Install dependencies
+        run: pip install cruft jello
+
       - name: Update project structure
-        run: |
-          pip install cruft
-          cruft update -y
+        run: cruft update -y
 
       - name: Get new template version
+        # extract new cooiecutter template version
         run: |
-          pip install jello
-          # extract new cooiecutter template version
           echo "TEMPLATE_COMMIT=$(cat .cruft.json | jello -r "_['commit'][:8]")" >> $GITHUB_ENV
 
       # behaviour if PR already exists: https://github.com/marketplace/actions/create-pull-request#action-behaviour
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: "chore: update project structure to ${TEMPLATE_COMMIT})"
+          commit-message: "chore: update project structure to ${{TEMPLATE_COMMIT}}"
           title: "[Cookiecutter] Auto-Update project structure"
           body: ""
           branch: "chore/cookiecutter-pypackage"
