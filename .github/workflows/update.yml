@@ -35,6 +35,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
+          token: ${{ AUTO_UPDATE_GITHUB_TOKEN }}
           commit-message: >-
             chore: update project structure to ${{ env.TEMPLATE_COMMIT }}
           title: "[Cruft] Auto-Update project structure"
